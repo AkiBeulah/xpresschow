@@ -1,38 +1,215 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Akronim&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Eczar|Roboto&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+:root {
+  --logoFont: 'Akronim', serif;
+}
+
+[type="checkbox"]:checked, [type="checkbox"]:not(:checked), [type="radio"]:checked, [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+body {
+  font-family: 'Roboto', cursive;
+}
+
+/* Header */
+
+.logo-font {
+  font-family: 'Akronim', serif;
+  font-size: 2.5rem !important;
+  font-weight: 400;
+}
+
+.no-border {
+  border-radius: 0 !important;
+}
+
+.nav-tabs .nav-link {
+  width: 50%;
   text-align: center;
+  font-size: 1.2em;
+  color: #000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Header */
+
+/* Carousel */
+
+.carousel-height {
+  height: 100vh
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.car-overlay {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background: rgba(71, 71, 71, 0.435);
+}
+
+.car-form-title {
+  font-family: 'Akronim', serif;
   color: white;
+  font-size: 4em;
+  text-transform: capitalize;
+  text-shadow: -13px 11px 2px black;
 }
 
-.App-link {
-  color: #61dafb;
+.location-button-radio:checked+label, 
+.location-button-radio:not(:checked)+label {
+  position: relative;
+  display: inline-block;
+  padding: 20px 0;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  vertical-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 300ms linear;
+  text-stroke: 1px black;
+  -webkit-text-stroke: 2px black;
+  text-fill-color: transparent;
+  color: transparent;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.location-button-radio:checked+label::before, .location-button-radio:not(:checked)+label::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: linear-gradient(138deg, rgb(255, 0, 0), rgb(251, 255, 0)); */
+  background-color: transparent;
+  z-index: -1;
+}
+
+.location-button-radio:checked+label::before {
+  transition: background .4s ease;
+  background-color: white;
+}
+
+.location-button-radio:checked+label span, .location-button-radio:not(:checked)+label span {
+  position: relative;
+  display: block;
+}
+
+.location-button-radio:checked+label span::before, .location-button-radio:not(:checked)+label span::before {
+  position: absolute;
+  content: attr(data-hover);
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  text-stroke: transparent;
+  text-fill-color: black;
+  color: black;
+  -moz-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+}
+
+.location-button-radio:not(:checked)+label span::before {
+  max-height: 0;
+}
+
+.location-button-radio:checked+label span::before {
+  max-height: 100%;
+}
+
+.location-buttons {
+  border: 0.1px solid black;
+  box-shadow: -13px 11px 8px black;
+}
+
+.location-button {
+  margin-bottom: -6px;
+}
+
+.location-field {
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+  border: none;
+  padding: .5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+/* Carousel */
+
+/* Instructions */
+
+.section-title-font {
+  font-family: 'Akronim', serif;
+  text-transform: capitalize;
+}
+
+.instruction {
+  min-height: 220px;
+  display: flex;
+  font-family: 'Akronim', serif;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-size: 2em;
+  flex-wrap: wrap;
+}
+
+.instruction-1 {
+  text-shadow: -13px 11px 2px black;
+}
+
+.instruction-2 {
+  text-shadow: 0 11px 2px black;
+}
+
+.instruction-3 {
+  text-shadow: 13px 11px 2px black;
+}
+
+.instruction-4 {
+  text-shadow: 0 16px 2px black;
+  font-size: 3em;
+}
+
+.rainbow-bg {
+  width: 100%;
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+  animation: rainbow 18s ease infinite;
+  border-radius: 0 0 8px 8px;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    background-position: 100% 19%
+  }
+  100% {
+    background-position: 0% 82%
   }
 }
+
+/* Instructions */

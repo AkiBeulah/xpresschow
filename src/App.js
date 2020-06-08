@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css';
+import Header from './pages/Header'
+import Footer from './pages/Footer'
+import Home from './Home'
+import Dashboard from './Dashboard'
+import axios from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [user, setUser] = useState({})
+    useEffect(() => {
+      const token = localStorage.getItem("token")
+      if (token) {
+        const headers = {
+          'Authorization': token
+        }
 
-export default App;
+        axios.post(`http://localhost:3001/user/login`, { headers: headers })
+          .then(resp => resp.json())
+          .then(data => {
+            setUser(data)
+          })
+      }
+    }, [])
+
+    const handleLogin = (user) => {
+      setUser(user)
+    }
+
+    return (
+      <>
+        <Header handleLogin={handleLogin} user={user} />
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={props => (
+                <Home user = {user} />
+              )} />
+
+            <Route
+              exact
+              path={"/dashboard"}
+              render={props => (
+                <Dashboard user={user} />
+              )} />
+
+          </Switch>
+        </BrowserRouter>
+
+        <div className="display-4">
+              {user.first_name}
+        </div>
+        
+        <Footer />
+      </>
+    );
+  }
+
+  export default App
