@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Akronim&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Eczar|Roboto&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +12,10 @@
   --logoFont: 'Akronim', serif;
 }
 
-[type="checkbox"]:checked, [type="checkbox"]:not(:checked), [type="radio"]:checked, [type="radio"]:not(:checked) {
+[type="checkbox"]:checked, 
+[type="checkbox"]:not(:checked), 
+[type="radio"]:checked, 
+[type="radio"]:not(:checked) {
   position: absolute;
   left: -9999px;
   width: 0;
@@ -23,11 +27,19 @@ body {
   font-family: 'Roboto', cursive;
 }
 
+.xx {
+  border: none !important;
+}
+
+.xxx {
+  padding: 0 !important;
+}
+
 /* Header */
 
 .logo-font {
   font-family: 'Akronim', serif;
-  font-size: 2.5rem !important;
+  font-size: 2rem !important;
   font-weight: 400;
 }
 
@@ -35,11 +47,29 @@ body {
   border-radius: 0 !important;
 }
 
+.nav {
+  max-height: 64px;
+  box-shadow: 0 2px 12px rgb(126, 126, 126);
+}
+
 .nav-tabs .nav-link {
   width: 50%;
   text-align: center;
   font-size: 1.2em;
   color: #000;
+}
+
+.navbar {
+  -webkit-transition: all 0.6s ease-out;
+  -moz-transition: all 0.6s ease-out;
+  -o-transition: all 0.6s ease-out;
+  -ms-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
+}
+
+.navbar.scrolled {
+  background: rgb(68, 68, 68); /* IE */
+  background: rgba(0, 0, 0, 0.78); /* NON-IE */
 }
 
 /* Header */
@@ -56,7 +86,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 0;
+  top: 64px;
   left: 0;
   z-index: 5;
   background: rgba(71, 71, 71, 0.435);
@@ -142,7 +172,7 @@ body {
 }
 
 .location-button {
-  margin-bottom: -6px;
+  margin-bottom: -12px;
 }
 
 .location-field {
@@ -213,3 +243,44 @@ body {
 }
 
 /* Instructions */
+
+/* Profile */
+
+.profile-image {
+  font-weight: 900;
+  font-size: 5em;
+  background: #ccc;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 1rem;
+  border-radius: 50%;
+}
+
+/* Profile */
+
+/* Home */
+.home-location {
+  font-family: 'Akronim', serif;
+  font-size: 1.4em;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #000 !important;
+  font-size: 2.5rem !important;
+}
+
+.slick-slide:not(:first-child):not(:last-child) {
+  padding: 0 8px;
+}
+
+.slick-slide:first-child {
+  padding-right: 8px;
+}
+
+.slick-slide:last-child {
+  padding-left: 8px;
+}
+
+
+/* Home */

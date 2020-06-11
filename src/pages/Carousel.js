@@ -14,14 +14,14 @@ export default class Carousel extends Component {
             <div className="location-buttons">
               <div className="location-button">
                 <input className="location-button-radio" type="radio" name="location" id="location-1" value="abuja" checked />
-                <label className="for-location-button-radio" for="location-1">
+                <label className="for-location-button-radio" htmlFor="location-1">
                   <span data-hover="Abuja">Abuja</span>
                 </label>
               </div>
 
               <div className="location-button">
                 <input className="location-button-radio" type="radio" name="location" value="covenant-university" id="location-2" />
-                <label className="for-location-button-radio" for="location-2">
+                <label className="for-location-button-radio" htmlFor="location-2">
                   <span data-hover="Covenant University">Covenant University</span>
                 </label>
               </div>
