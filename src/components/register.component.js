@@ -124,8 +124,9 @@ export default class Register extends Component {
             message: resMessage
           });
         }
-        ).then(
-        window.location.reload()
+      ).then(
+        this.props.hideModel(),
+        this.props.showModel()
       );
     }
   }
@@ -160,7 +161,7 @@ export default class Register extends Component {
             )}
 
             {!this.state.successful && (
-              <div className="row">
+              <div className="row container">
                 <div className="form-group col-md-6">
                   <Input type="text" className="form-control form-control-lg" name="email" placeholder="First Name"
                     value={this.state.first_name} onChange={this.onChangeFirstName} validations={[required]} />

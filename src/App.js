@@ -12,6 +12,9 @@ import AuthService from "./services/auth.service";
 
 import Home from "./Home"
 import Profile from "./components/profile.component"
+import Vendor from "./components/vendor.component"
+import Test from "./components/test.component"
+import Checkout from "./components/checkout.component"
 import Footer from "./pages/Footer"
 import LoginForm from './components/login.component'
 import RegisterForm from './components/register.component'
@@ -23,7 +26,9 @@ class App extends Component {
 
     this.state = {
       currentUser: undefined,
-      show: props.modal
+      show: props.modal,
+      cart: [],
+      placedOrderData: []
     };
   }
 
@@ -41,6 +46,19 @@ class App extends Component {
         currentUser: JSON.parse(user)
       });
     }
+  }
+
+  updateCart = (arr) => {
+    this.setState({
+      cart: arr
+    })
+  }
+
+  placeOrderData = (arr) => {
+    this.setState({
+      placedOrderData: arr,
+      cart: []
+    })
   }
 
   logOut() {
@@ -61,18 +79,17 @@ class App extends Component {
 
 
     return (
-      <>
+      <div style={{ minHeight: "100vh", position: "relative" }}>
         <Modal show={this.state.show} onHide={close} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
           <Tabs className="d-flex xx w-100 flex-row justify-content-center" defaultActiveKey="loginForm" id="uncontrolled-tab-example">
             <Tab className="xx" eventKey="loginForm" title="Login Form">
-              <LoginForm />
+              <LoginForm hideModal={() => this.setState({ show: false })} />
             </Tab>
             <Tab className="xx" eventKey="registerForm" title="Register Form">
-              <RegisterForm />
+              <RegisterForm hideModal={() => this.setState({ show: false })}  showModal={() => this.setState({ show: true })}/>
             </Tab>
           </Tabs>
         </Modal>
-
         <Navbar collapseOnSelect className="nav" expand="lg" bg="white" sticky="top" variant="light">
           <div className="container">
             <Navbar.Brand className="logo-font xxx" href="/">XpressChow</Navbar.Brand>
@@ -85,14 +102,14 @@ class App extends Component {
                 {
                   currentUser ?
                     <>
-                      <NavDropdown title={"Hi, " + currentUser.first_name} className="btn btn-link no-border text-light">
-                        <Nav.Link href={"/profile"}>
+                      <NavDropdown title={"Hi, " + currentUser.first_name} className="btn btn-link xx text-light">
+                        <Nav.Link className="xx" href={"/profile"}>
                           <button className="btn btn-link text-dark no-border">Timeline</button>
                         </Nav.Link>
-                        <Nav.Link href={"/profile"}>
+                        <Nav.Link className="xx" href={"/profile"}>
                           <button className="btn btn-link text-dark no-border">My Account</button>
                         </Nav.Link>
-                        <Nav.Link href={"/profile"}>
+                        <Nav.Link className="xx" href={"/profile"}>
                           <button className="btn btn-link text-dark no-border">Address Book</button>
                         </Nav.Link>
                         <NavDropdown.Divider />
@@ -113,12 +130,27 @@ class App extends Component {
 
         <Router>
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path={["/", "/home"]} render={(props) =>
+              <Home {...props} />} />
+            <Route exact path="/profile" render={(props) =>
+              <Profile {...props}
+                placedOrderData={this.state.placedOrderData}
+              />} />
+            <Route exact path="/vendor/:vendorname" render={(props) =>
+              <Vendor {...props}
+                updateCart={this.updateCart}
+              />} />
+            <Route exact path="/vendor/:vendorname/checkout" render={(props) =>
+              <Checkout {...props}
+                cart={this.state.cart}
+                placeOrderData={(a) => this.placeOrderData(a)}
+                showModal={() => this.setState({ show: true })}
+              />} />
+            <Route exact path="/test/:vendorname" component={Test} />
           </Switch>
         </Router>
         <Footer />
-      </>
+      </div>
     )
   }
 }

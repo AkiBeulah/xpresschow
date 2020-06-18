@@ -55,8 +55,7 @@ export default class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.credential, this.state.password).then(
         () => {
-          window.history.pushState("", "", "/")
-          window.location.reload()
+          this.props.hideModal()
         },
         error => {
           const resMessage =

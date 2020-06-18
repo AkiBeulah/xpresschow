@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const API_URL = `http://localhost:3001/user/login/`
+const API_URL = `http://localhost:3001/`
 
 class AuthService {
   login(credential, password) {
@@ -10,7 +10,7 @@ class AuthService {
       password: password
     }
 
-    return axios.post(API_URL, qs.stringify(user))
+    return axios.post(API_URL + 'user/login', qs.stringify(user))
       .then(resp => {
         if (resp.data.token) {
           localStorage.setItem("token", resp.data.token)
@@ -34,7 +34,7 @@ class AuthService {
       last_name: last_name,
       phone_number: phone_number
     }
-    return axios.post(`http://localhost:3001/users`, qs.stringify(user))
+    return axios.post(API_URL + `users`, qs.stringify(user))
   }
 
   getCurrentUser() {

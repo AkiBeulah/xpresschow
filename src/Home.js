@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Slider from "react-slick";
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Card from 'react-bootstrap/Card'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -86,12 +87,17 @@ export default class Home extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.state.location !== prevProps.location) {
+      
+    }
+  }
+
   updateLocation = (loc) => {
     localStorage.setItem("location", loc);
     this.setState({
       location: loc
     });
-
     UserService.getFilteredVendors(this.state.location)
       .then(
         response => {
@@ -110,10 +116,14 @@ export default class Home extends Component {
       );
   }
 
+  vendorRedirect = (loc) => {
+    this.props.history.push(`/vendor/${loc}`)
+    window.location.reload()
+  }
+
   render() {
-    const vendorCard = {
-      width: "15rem"
-    }
+    const vendorCard = { width: "15rem" }
+    const vendorCard2 = { width: "13rem" }
     var content = this.state.content;
     var currentUser = this.state.currentUser;
     var vendors = [];
@@ -122,10 +132,10 @@ export default class Home extends Component {
     });
     var settings = {
       arrows: true,
+      variableWidth: true,
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 4.5,
       slidesToScroll: 3
     };
 
@@ -170,44 +180,49 @@ export default class Home extends Component {
             {
               vendors.map(m => {
                 return (
-                  <div className="card xx">
-                    <img src={m.logo} alt="" className="card-img-top" />
-                    <div className="card-body">
-                      <div className="card-title">
-                        {m.company_name + ", " + m.company_branch}
-                      </div>
-                      <div className="card-text">
-                        {m.rating + " - " + m.location}
-                      </div>
+                  <Card className="xx card-custom" onClick={() => this.vendorRedirect(m.vendorname, m)} style={vendorCard} >
+                    <div className="hidden-o">
+                      <Card.Img className="card-image-custom" variant="top" src={m.logo} />
                     </div>
-                  </div>
+                    <Card.Body>
+                      <Card.Title>
+                        {m.company_name + ", " + m.company_branch}
+                      </Card.Title>
+                      <Card.Text>
+                        {m.rating + " - " + m.location}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
                 );
               })
             }
+
           </Slider>
 
           <Navbar className="" expand="lg" bg="transparent">
-            <span className="home-location text-dark" style={{fontSize: "2.5rem"}}>30 Minutes Away</span>
+            <span className="home-location text-dark" style={{ fontSize: "2.5rem" }}>30 Minutes Away</span>
           </Navbar>
           <div className="d-flex flex-row flex-wrap justify-content-between">
-          {
-              vendors.map(m => {
+            {
+              vendors.slice(0, 10).map(m => {
                 return (
-                  <div className="card xx" style={vendorCard}>
-                    <img src={m.logo} alt="" className="card-img-top" />
-                    <div className="card-body">
-                      <div className="card-title">
-                        {m.company_name + ", " + m.company_branch}
-                      </div>
-                      <div className="card-text">
-                        {m.rating + " - " + m.location}
-                      </div>
+                  <Card className="xx card-custom" onClick={() => this.vendorRedirect(m.vendorname, m)} style={vendorCard2} >
+                    <div className="hidden-o">
+                      <Card.Img className="card-image-custom" variant="top" src={m.logo} />
                     </div>
-                  </div>
+                    <Card.Body>
+                      <Card.Title>
+                        {m.company_name + ", " + m.company_branch}
+                      </Card.Title>
+                      <Card.Text>
+                        {m.rating + " - " + m.location}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
                 );
               })
             }
-         </div>
+          </div>
         </div>
       </>
     );

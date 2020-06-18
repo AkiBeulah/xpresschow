@@ -1,7 +1,6 @@
 import axios from 'axios';
-// import qs from "qs";
 
-// import authHeader from './auth-header';
+import authHeader from "./auth-header"
 
 const API_URL = 'http://localhost:3001/';
 
@@ -11,16 +10,29 @@ class UserService {
   }
 
   getFilteredVendors(loc) {
-    const feed = {
-      location: loc
-    }
-    // return axios.get(`http://localhost:3001/f_vendor?location=${loc}`)
-    return axios.get('http://localhost:3001/f_vendor', {
+    return axios.get(API_URL + 'f_vendor', {
       params: {
         location: loc
       }
     })
   }
+
+  getVendor(vendor) {
+    return axios.get(API_URL + 'vendors/' + vendor)
+  }
+
+  getUserProfile(a) {
+    return axios.get(API_URL + `users/${a}`, {
+      headers: authHeader()
+    })
+  }
+
+  getOrderRecord(a) {
+    return axios.get(API_URL + `orders/${a}`, {
+      headers: authHeader()
+    })
+  }
 }
+
 
 export default new UserService();
