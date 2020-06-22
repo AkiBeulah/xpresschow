@@ -88,7 +88,7 @@ body {
 /* Carousel */
 
 .carousel-height {
-  height: 100vh
+  height: calc(100vh - 64px)
 }
 
 .car-overlay {

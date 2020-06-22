@@ -124,10 +124,7 @@ export default class Register extends Component {
             message: resMessage
           });
         }
-      ).then(
-        this.props.hideModel(),
-        this.props.showModel()
-      );
+      )
     }
   }
 
@@ -163,17 +160,17 @@ export default class Register extends Component {
             {!this.state.successful && (
               <div className="row container">
                 <div className="form-group col-md-6">
-                  <Input type="text" className="form-control form-control-lg" name="email" placeholder="First Name"
+                  <Input type="given-name" className="form-control form-control-lg" name="given-name" placeholder="First Name"
                     value={this.state.first_name} onChange={this.onChangeFirstName} validations={[required]} />
                 </div>
 
                 <div className="form-group col-md-6">
-                  <Input type="text" className="form-control form-control-lg" name="email" placeholder="Last Name"
+                  <Input type="family-name" className="form-control form-control-lg" name="family-name" placeholder="Last Name"
                     value={this.state.last_name} onChange={this.onChangeLastName} validations={[required]} />
                 </div>
 
                 <div className="form-group col-md-12">
-                  <Input type="text" className="form-control form-control-lg" name="email" placeholder="Email"
+                  <Input type="email" className="form-control form-control-lg" name="email" placeholder="Email"
                     value={this.state.email} onChange={this.onChangeEmail} validations={[required, email]} />
                 </div>
 
@@ -183,7 +180,7 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group col-md-12">
-                  <Input type="text" className="form-control form-control-lg" name="email" placeholder="Phone Number"
+                  <Input type="tel" className="form-control form-control-lg" name="tel " placeholder="Phone Number"
                     value={this.state.phone_number} onChange={this.onChangePhoneNumber} validations={[required]} />
                 </div>
 

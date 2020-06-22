@@ -1,16 +1,14 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 
 import ScrollspyNav from "react-scrollspy-nav";
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-
 import UserService from "../services/user.service"
-import AuthService from "../services/auth.service";
+import AuthService from "../services/auth.service"
 
 export default class Profile extends Component {
 
@@ -51,7 +49,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    const vendorCard = { width: "15rem" }
     const orders = this.state.orders
     const lastOrder = Object.values(this.state.lastOrder)
     let scrollSpyClass = "profile-scrollspy"

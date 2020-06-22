@@ -1,8 +1,5 @@
 import React, { Component } from "react"
 
-
-import ScrollspyNav from "react-scrollspy-nav";
-
 import Row from 'react-bootstrap/Row'
 import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card'
@@ -11,8 +8,8 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
+import Form from "react-validation/build/form"
+import Input from "react-validation/build/input"
 
 import AuthService from "../services/auth.service"
 import UserService from "../services/user.service"
@@ -20,7 +17,7 @@ import CheckoutService from "../services/checkout.service"
 
 export default class Profile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       currentUser: JSON.parse(AuthService.getCurrentUser()),
@@ -33,7 +30,7 @@ export default class Profile extends Component {
       location2: "",
       price: 0,
       placeOrderData: []
-    };
+    }
   }
 
 
@@ -45,7 +42,7 @@ export default class Profile extends Component {
         response => {
           this.setState({
             vendor: response.data
-          });
+          })
         },
         error => {
           this.setState({
@@ -53,9 +50,9 @@ export default class Profile extends Component {
               (error.response && error.response.data) ||
               error.message ||
               error.toString()
-          });
+          })
         }
-      );
+      )
     this.getTotal()
   }
 
@@ -99,13 +96,13 @@ export default class Profile extends Component {
   onChangeLocation1 = (e) => {
     this.setState({
       location1: e.target.value
-    });
+    })
   }
 
   onChangeLocation2 = (e) => {
     this.setState({
       location2: e.target.value
-    });
+    })
   }
 
   onChangePaymentMethod = (e) => {
@@ -115,11 +112,11 @@ export default class Profile extends Component {
   }
 
   render() {
-    const vendor = this.state.vendor
-    const order = []
-    const vendorHeader = {
-      background: `url(${vendor.logo}) center/cover no-repeat`
-    }
+    // const vendor = this.state.vendor
+    // const order = []
+    // const vendorHeader = {
+    //   background: `url(${vendor.logo}) center/cover no-repeat`
+    // }
     return (
       <div className="container">
         {/* <div className="vendor-header" style={vendorHeader}>
@@ -155,18 +152,19 @@ export default class Profile extends Component {
                       <Form>
                         <div className="form-group col-md-12">
                           <Input
-                            type="text"
+                            type="address-line1"
                             className="form-control form-control-lg"
                             name="locationLine1"
                             placeholder="Address Line 1"
                             value={this.state.location1}
+                            autocomplete="home street-address"
                             onChange={this.onChangeLocation1}
                           />
                         </div>
 
                         <div className="form-group col-md-12">
                           <Input
-                            type="text"
+                            type="address-line2"
                             className="form-control form-control-lg"
                             name="locationLine2"
                             placeholder="Address Line 2"
