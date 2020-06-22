@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/xpresschow/static/css/main.1830c5a6.chunk.css",
+    "main.js": "/xpresschow/static/js/main.0f1c9125.chunk.js",
+    "main.js.map": "/xpresschow/static/js/main.0f1c9125.chunk.js.map",
+    "runtime-main.js": "/xpresschow/static/js/runtime-main.8be5361d.js",
+    "runtime-main.js.map": "/xpresschow/static/js/runtime-main.8be5361d.js.map",
+    "static/css/2.fdf9ceb3.chunk.css": "/xpresschow/static/css/2.fdf9ceb3.chunk.css",
+    "static/js/2.f57eb529.chunk.js": "/xpresschow/static/js/2.f57eb529.chunk.js",
+    "static/js/2.f57eb529.chunk.js.map": "/xpresschow/static/js/2.f57eb529.chunk.js.map",
+    "index.html": "/xpresschow/index.html",
+    "precache-manifest.7a7f8746b79e77b548e5af4b437d8a94.js": "/xpresschow/precache-manifest.7a7f8746b79e77b548e5af4b437d8a94.js",
+    "service-worker.js": "/xpresschow/service-worker.js",
+    "static/css/2.fdf9ceb3.chunk.css.map": "/xpresschow/static/css/2.fdf9ceb3.chunk.css.map",
+    "static/css/main.1830c5a6.chunk.css.map": "/xpresschow/static/css/main.1830c5a6.chunk.css.map",
+    "static/js/2.f57eb529.chunk.js.LICENSE.txt": "/xpresschow/static/js/2.f57eb529.chunk.js.LICENSE.txt",
+    "static/media/slick-theme.css": "/xpresschow/static/media/slick.f97e3bbf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8be5361d.js",
+    "static/css/2.fdf9ceb3.chunk.css",
+    "static/js/2.f57eb529.chunk.js",
+    "static/css/main.1830c5a6.chunk.css",
+    "static/js/main.0f1c9125.chunk.js"
+  ]
+}
