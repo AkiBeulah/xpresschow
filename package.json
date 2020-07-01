@@ -1,8 +1,9 @@
 {
   "name": "xpresschow",
+  "homepage": "https://akibeulah.github.io/xpresschow/",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://xpresschow-api.herokuapp.com/",
+  "proxy": "https://akibeulah.github.io/xpresschow/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -34,7 +35,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

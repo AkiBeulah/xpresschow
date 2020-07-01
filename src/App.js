@@ -128,7 +128,7 @@ class App extends Component {
           </div>
         </Navbar>
 
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path={["/", "/home"]} render={(props) =>
               <Home {...props} />} />
