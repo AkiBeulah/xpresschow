@@ -13,7 +13,7 @@ import AuthService from "./services/auth.service";
 import Home from "./Home"
 import Profile from "./components/profile.component"
 import Vendor from "./components/vendor.component"
-import Test from "./components/test.component"
+// import Test from "./components/test.component"
 import Checkout from "./components/checkout.component"
 import Footer from "./pages/Footer"
 import LoginForm from './components/login.component'
@@ -103,7 +103,7 @@ class App extends Component {
                   currentUser ?
                     <>
                       <NavDropdown title={"Hi, " + currentUser.first_name} className="btn btn-link xx text-light">
-                        <Nav.Link className="xx" href={"/profile"}>
+                      <Nav.Link className="xx" href={"/profile"}>
                           <button className="btn btn-link text-dark no-border">Timeline</button>
                         </Nav.Link>
                         <Nav.Link className="xx" href={"/profile"}>
@@ -146,7 +146,7 @@ class App extends Component {
                 placeOrderData={(a) => this.placeOrderData(a)}
                 showModal={() => this.setState({ show: true })}
               />} />
-            <Route exact path="/test/:vendorname" component={Test} />
+            {/* <Route exact path="/test/:vendorname" component={Test} /> */}
           </Switch>
         </Router>
         <Footer />

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTruck } from '@fortawesome/free-solid-svg-icons'
+
 export default class Instructions extends Component {
   render() {
     return (
@@ -22,7 +25,7 @@ export default class Instructions extends Component {
                     </div>
           </div>
           <div className="col text-center instruction instruction-4 rainbow-bg">
-            <i className="instruction-icon fas fa-truck"></i>
+            <FontAwesomeIcon icon={faTruck} />
                     Then we bring the food to you to enjoy...
                 </div>
         </div>
