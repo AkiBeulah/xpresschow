@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Akronim&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Eczar|Roboto&display=swap');
+html {scroll-behavior: smooth;}
+
 * {
   box-sizing: border-box;
   margin: 0;

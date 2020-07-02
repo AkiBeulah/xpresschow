@@ -46,6 +46,23 @@ class UserService {
       headers: authHeader()
     })
   }
+
+  placeOrder(a, b, c, d, e, f, g) {
+    localStorage.removeItem("cartTemp")
+    return axios.post(API_URL + 'orders',
+      {
+          user_id: a,
+          vendor_id: b,
+          location: c,
+          payment_method: d,
+          price: e,
+          paid: f,
+          orders: g
+      },
+      {
+        headers: authHeader()
+      }
+    )}
 }
 
 

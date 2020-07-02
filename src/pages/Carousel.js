@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import Car from 'react-bootstrap/Carousel'
 
 export default class Carousel extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  updatedLocation = (loc) => {
+    this.props.upStateLoc(loc)
+  }
+
   render() {
     const objectFit = { objectFit: 'cover' }
     return (
@@ -10,23 +18,42 @@ export default class Carousel extends Component {
           <div className="w-50 car-form-title">
             Where are you?
           </div>
-          <div className="w-50">
+          <form className="w-50">
             <div className="location-buttons">
               <div className="location-button">
-                <input className="location-button-radio" type="radio" name="location" id="location-1" value="abuja" checked />
-                <label className="for-location-button-radio" htmlFor="location-1">
+                <input 
+                  className="location-button-radio" 
+                  type="radio" 
+                  name="location" 
+                  id="location-1"
+                  onChange={() => this.updatedLocation("Abuja")}
+                  value="abuja" 
+                  checked={this.props.location === "Abuja"} />
+                <label 
+                  className="for-location-button-radio"
+                  htmlFor="location-1">
                   <span data-hover="Abuja">Abuja</span>
                 </label>
               </div>
 
               <div className="location-button">
-                <input className="location-button-radio" type="radio" name="location" value="covenant-university" id="location-2" />
-                <label className="for-location-button-radio" htmlFor="location-2">
+                <input 
+                  className="location-button-radio" 
+                  type="radio" 
+                  name="location" 
+                  value="covenant-university"
+                  id="location-2" 
+                  onChange={() => this.updatedLocation("Covenant University")}
+                  checked={this.props.location === "Covenant University"}/>
+                <label 
+                  // onClick={this.props.updateLocation("Covenant University")} 
+                  className="for-location-button-radio" 
+                  htmlFor="location-2">
                   <span data-hover="Covenant University">Covenant University</span>
                 </label>
               </div>
             </div>
-          </div>
+          </form>
         </div>
 
         <Car>

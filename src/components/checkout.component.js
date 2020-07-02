@@ -13,7 +13,6 @@ import Input from "react-validation/build/input"
 
 import AuthService from "../services/auth.service"
 import UserService from "../services/user.service"
-import CheckoutService from "../services/checkout.service"
 
 export default class Profile extends Component {
   constructor(props) {
@@ -22,7 +21,7 @@ export default class Profile extends Component {
     this.state = {
       currentUser: JSON.parse(AuthService.getCurrentUser()),
       vendor: "",
-      cart: this.props.cart,
+      cart: this.props.cart === [] ? this.props.cart : JSON.parse(localStorage.getItem("cartTemp")),
       total: 0,
       itemCount: 0,
       paymentMethod: "po",
@@ -76,7 +75,7 @@ export default class Profile extends Component {
       let cart = this.state.cart
       cart.map(i => { i.pop() })
 
-      CheckoutService.placeOrder(
+      UserService.placeOrder(
         this.state.currentUser.id,
         this.state.vendor.id,
         (this.state.location1 + " " + this.state.location2),
@@ -157,7 +156,7 @@ export default class Profile extends Component {
                             name="locationLine1"
                             placeholder="Address Line 1"
                             value={this.state.location1}
-                            autocomplete="home street-address"
+                            autoComplete="home street-address"
                             onChange={this.onChangeLocation1}
                           />
                         </div>

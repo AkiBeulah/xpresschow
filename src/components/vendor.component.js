@@ -73,7 +73,8 @@ export default class Profile extends Component {
   }
 
   toCheckout() {
-    this.props.updateCart(this.state.cart)    
+    this.props.updateCart(this.state.cart)
+    localStorage.setItem("cartTemp", JSON.stringify(this.state.cart))
     this.props.history.push(`${this.props.match.params.vendorname}/checkout`)
   }
 
@@ -203,13 +204,24 @@ export default class Profile extends Component {
                         })
                       }
                     </ListGroup>
-                    <Button onClick={() => this.toCheckout()} className="order-dropdown-button" variant="dark" block>
-                      <Row>
-                        <Col xs={1}>{this.state.itemCount}</Col>
-                        <Col className="text-center">Proceed to Checkout</Col>
-                        <Col className="text-left" xs={3}>₦{(this.state.price).toFixed(2)}</Col>
-                      </Row>
-                    </Button>
+                    {
+                      this.state.cart.length === 0 || this.state.cart === [] ?
+                        <Button onClick={() => this.toCheckout()} className="order-dropdown-button" variant="dark" block disabled>
+                          <Row>
+                            <Col xs={1}>{this.state.itemCount}</Col>
+                            <Col className="text-center">Proceed to Checkout</Col>
+                            <Col className="text-left" xs={3}>₦{(this.state.price).toFixed(2)}</Col>
+                          </Row>
+                        </Button>
+                        :
+                        <Button onClick={() => this.toCheckout()} className="order-dropdown-button" variant="dark" block>
+                          <Row>
+                            <Col xs={1}>{this.state.itemCount}</Col>
+                            <Col className="text-center">Proceed to Checkout</Col>
+                            <Col className="text-left" xs={3}>₦{(this.state.price).toFixed(2)}</Col>
+                          </Row>
+                        </Button>
+                    }
                   </Dropdown.Menu>
                 </Dropdown>
               </>

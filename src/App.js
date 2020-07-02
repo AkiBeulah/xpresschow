@@ -54,6 +54,10 @@ class App extends Component {
     })
   }
 
+  scrollToRef = (ref) => {
+    window.scrollTo(0, ref.current.offsetTop)
+  }
+
   placeOrderData = (arr) => {
     this.setState({
       placedOrderData: arr,
@@ -141,11 +145,17 @@ class App extends Component {
                 updateCart={this.updateCart}
               />} />
             <Route exact path="/vendor/:vendorname/checkout" render={(props) =>
-              <Checkout {...props}
+              JSON.parse(localStorage.getItem("cartTemp")).length === 0 && this.state.cart.length === 0 ?
+                (  
+                  window.location.href = "/"
+                )
+                :
+              (<Checkout {...props}
                 cart={this.state.cart}
                 placeOrderData={(a) => this.placeOrderData(a)}
                 showModal={() => this.setState({ show: true })}
-              />} />
+                />)
+            } />
             {/* <Route exact path="/test/:vendorname" component={Test} /> */}
           </Switch>
         </Router>

@@ -117,7 +117,7 @@ export default class Home extends Component {
           this.setState({
             content: response.data,
             loading: false
-          });
+          }, () => window.scrollTo(0, document.querySelector('#vendors').offsetTop));
         },
         error => {
           this.setState({
@@ -158,7 +158,9 @@ export default class Home extends Component {
         {
           currentUser ? <></> :
             <>
-              <Carousel />
+              <Carousel
+                upStateLoc={(loc => this.setState({location: loc, loading: true}, () => this.updateLocation()))}
+                location={this.state.location} />
               <Instructions />
             </>
         }
@@ -260,7 +262,7 @@ export default class Home extends Component {
                 }
               </Slider>
           }
-          <Navbar className="" expand="lg" bg="transparent">
+          <Navbar className="" id="vendors" expand="lg" bg="transparent">
             <span className="home-location text-dark" style={{ fontSize: "2.5rem" }}>
               {this.state.search.length >  0 ? "Meals" : "30 Minutes Away"}
             </span>
