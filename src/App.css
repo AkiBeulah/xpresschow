@@ -478,3 +478,19 @@ body {
 }
 
 /* Checkout */
+
+.error404 {
+  background: url("https://i.ibb.co/yWmzY0w/little-girl-feel-hungry-10045-208.jpg") no-repeat center fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90vh;
+}
+
+.error404-text {
+  font-size: 3rem;
+  font-weight: bolder;
+  box-shadow: 2px 3px 8px #000;
+  border-radius: 25px;
+}

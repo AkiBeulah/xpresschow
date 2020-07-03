@@ -18,7 +18,7 @@ import Checkout from "./components/checkout.component"
 import Footer from "./pages/Footer"
 import LoginForm from './components/login.component'
 import RegisterForm from './components/register.component'
-// import NotFound from 
+import NotFound from './NotFound'
 
 class App extends Component {
   constructor(props) {
@@ -157,7 +157,7 @@ class App extends Component {
                 showModal={() => this.setState({ show: true })}
                 />)
             } />
-            {/* <Route component={NotFound} /> */}
+            <Route component={NotFound} />
           </Switch>
         </Router>
         <Footer />
