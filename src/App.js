@@ -18,6 +18,7 @@ import Checkout from "./components/checkout.component"
 import Footer from "./pages/Footer"
 import LoginForm from './components/login.component'
 import RegisterForm from './components/register.component'
+// import NotFound from 
 
 class App extends Component {
   constructor(props) {
@@ -156,7 +157,7 @@ class App extends Component {
                 showModal={() => this.setState({ show: true })}
                 />)
             } />
-            {/* <Route exact path="/test/:vendorname" component={Test} /> */}
+            {/* <Route component={NotFound} /> */}
           </Switch>
         </Router>
         <Footer />
