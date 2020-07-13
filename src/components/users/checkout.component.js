@@ -256,7 +256,7 @@ export default class Profile extends Component {
                 </div>
               </Accordion>
               <Card.Footer>
-                {(this.state.location1 === "") ? <Button size="lg" variant="success" block disabled>Place Order</Button> : <Button size="lg" variant="success" onClick={this.placeOrder} block>Place Order</Button>}
+                {(this.state.location1 === "") ? <Button size="lg" variant="success" block disabled>Place Order</Button> : <Button size="lg" variant="success" onClick={() => this.placeOrder} block>Place Order</Button>}
               </Card.Footer>
             </Card>
           </Col>

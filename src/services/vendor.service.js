@@ -32,12 +32,13 @@ class VendorService {
     })
   }
 
-  updateVendorDetails(b, c, d, e, f, g, h) {
+  updateVendorDetails(a, b, c, d, e, f, g, h) {
     return axios({
       method: "patch",
       url: API_URL + `vendors/${h}`,
       headers: authHeader(),
       params: {
+        logo: a,
         company_name: b,
         company_branch: c,
         email: d,

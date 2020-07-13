@@ -1,17 +1,12 @@
 import React, { Component } from "react"
 
-import ScrollspyNav from "react-scrollspy-nav";
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
-import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Navbar from 'react-bootstrap/Navbar'
-
-import Badge from '@material-ui/core/Badge';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from "@fortawesome/free-solid-svg-icons";

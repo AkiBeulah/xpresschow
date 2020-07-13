@@ -1,18 +1,8 @@
 import React, { Component } from "react"
 
-import ScrollspyNav from "react-scrollspy-nav";
-
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal'
-import Navbar from 'react-bootstrap/Navbar'
-import Button from 'react-bootstrap/Button'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Dropdown from 'react-bootstrap/Dropdown'
-
-import Badge from '@material-ui/core/Badge';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -43,6 +33,12 @@ export default class Profile extends Component {
     }
   }
 
+  onChangeLogo = (e) => {
+    this.setState({
+      logo: e.target.value
+    })
+  }
+  
   onChangeEmail = (e) => {
     this.setState({
       email: e.target.value
@@ -92,6 +88,7 @@ export default class Profile extends Component {
 
   handleUpdate = () => {
     VendorService.updateVendorDetails(
+      this.state.logo,
       this.state.companyName,
       this.state.companyBranch,
       this.state.email,
@@ -129,7 +126,20 @@ export default class Profile extends Component {
         <Modal show={this.state.show} onHide={close} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Form onSubmit={this.handleUpdate}>
             <div className="d-flex flex-row justify-content-start" style={{ padding: "12px" }}>
-              <Image className="vendor-man-image col" src={this.state.logo} thumbnail />
+              <div className="col">
+                <Image className="vendor-man-image col" src={this.state.logo} thumbnail />
+                <div className="form-group col-md-12">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    name="logo"
+                    // ref="file"
+                    placeholder="Logo URL"
+                    onChange={this.onChangeLogo}
+                  />
+                </div>
+              </div>
+
               <div className="col">
                 <div className="form-group col-md-12">
                   <input
@@ -258,7 +268,7 @@ export default class Profile extends Component {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <div onClick={() => this.setState({show: true})} className="btn btn-lg btn-block btn-outline-primary">Edit</div>
+            <div onClick={() => this.setState({ show: true })} className="btn btn-lg btn-block btn-outline-primary">Edit</div>
           </Card.Footer>
         </Card>
       </>

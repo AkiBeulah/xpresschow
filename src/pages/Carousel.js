@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Car from 'react-bootstrap/Carousel'
 
 export default class Carousel extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   updatedLocation = (loc) => {
     this.props.upStateLoc(loc)

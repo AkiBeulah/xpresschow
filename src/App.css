@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Akronim&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Eczar|Roboto&display=swap');
-html {scroll-behavior: smooth;}
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   box-sizing: border-box;
@@ -289,7 +291,7 @@ body {
 
 .profile-order-list {
   padding: .25rem !important;
-  width:200px !important;
+  width: 200px !important;
   margin-right: 20px;
   border: 1px solid #181818 !important;
   border-radius: 0 !important;
@@ -522,35 +524,24 @@ body {
 .floating-available {
   position: absolute;
   z-index: 10;
-    top: 12px;
-    right: 12px;
-    cursor: pointer;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
 }
 
 .glowing-red {
-   outline: none;
-   color: #ff5c5c;
-   border-color: #ff4545;
-   text-shadow: 
-    0 0 2px #ff0000,
-    0 0 10px #ff0000,
-    0 0 20px #ff5656,
-    0 0 30px #ff5656,
-    0 0 40px #fd7e7e,
-    0 0 50px #7c4d4d;
-  }
-  
-  .glowing-green {
-    outline: none;
-    color: #63ff4a;
-    border-color: #5eff45;
-    text-shadow: 
-      0 0 2px #ff0000,
-      0 0 10px #ff0000,
-      0 0 20px #ff5656,
-      0 0 30px #ff5656,
-      0 0 40px #fd7e7e,
-      0 0 50px #7c4d4d;;
+  outline: none;
+  color: #ff5c5c;
+  border-color: #ff4545;
+  text-shadow: 0 0 2px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff5656, 0 0 30px #ff5656, 0 0 40px #fd7e7e, 0 0 50px #7c4d4d;
+}
+
+.glowing-green {
+  outline: none;
+  color: #63ff4a;
+  border-color: #5eff45;
+  text-shadow: 0 0 2px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff5656, 0 0 30px #ff5656, 0 0 40px #fd7e7e, 0 0 50px #7c4d4d;
+  ;
 }
 
 .meals-btn {
@@ -559,4 +550,15 @@ body {
   right: 2rem;
   bottom: 4rem;
   cursor: pointer;
+}
+
+.vendor-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  min-width: 100px;
+  max-width: 250px;
+  min-height: 100px;
+  margin: 0 auto 1rem auto;
 }

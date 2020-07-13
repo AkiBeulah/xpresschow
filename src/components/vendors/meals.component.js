@@ -2,13 +2,11 @@ import React, { Component } from "react"
 
 import ScrollspyNav from "react-scrollspy-nav";
 
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal'
 import Navbar from 'react-bootstrap/Navbar'
-import Button from 'react-bootstrap/Button'
 
 import Form from "react-validation/build/form";
 
@@ -165,23 +163,9 @@ export default class Meals extends Component {
   }
 
   onChangeSample = (e) => {
-    var result = {}
-    this.setState({loading: true})
-    if (e.target.files && e.target.files[0]) {
-      VendorService.vendorImageUpload(e.target.files[0])
-        .then(resp => {
-          result.title = resp.data.data.image.filename
-          result.image = resp.data.data.image.url
-          result.medium = resp.data.data.medium.url
-          result.thumb = resp.data.data.thumb.url
-          result.delete = resp.data.data.delete_url
-
-          this.setState({
-            sample: JSON.stringify(result),
-            loading: false
-          })
-        })
-    }
+    this.setState({
+      sample: e.target.value
+    })
   }
 
   modalMount = (m) => {
@@ -219,18 +203,17 @@ export default class Meals extends Component {
           <Form onSubmit={this.handleUpdate}>
             <div className="d-flex flex-row justify-content-start" style={{ padding: "12px" }}>
               <div className="col">
-                {/* <Image className="vendor-man-image col" src={} thumbnail /> */}
+                <Image className="vendor-man-image col" src={this.state.sample} thumbnail />
                 <div className="form-group col-md-12">
                   <input
-                    type="file"
+                    type="text"
                     className="form-control form-control-lg"
                     name="sample"
-                    ref="file"
-                    placeholder="Sample"
+                    // ref="file"
+                    placeholder="Sample URL"
                     onChange={this.onChangeSample}
                   />
                 </div>
-                sample: {this.state.sample}
               </div>
               <div className="col">
                 <input
@@ -298,7 +281,19 @@ export default class Meals extends Component {
         <Modal show={this.state.newShow} onHide={close} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Form onSubmit={this.handleCreate}>
             <div className="d-flex flex-row justify-content-start" style={{ padding: "12px" }}>
-              <Image className="vendor-man-image col" src={this.state.sample} thumbnail />
+            <div className="col">
+                <Image className="vendor-man-image col" src={this.state.sample} thumbnail />
+                <div className="form-group col-md-12">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    name="sample"
+                    // ref="file"
+                    placeholder="Sample URL"
+                    onChange={this.onChangeSample}
+                  />
+                </div>
+              </div>
               <div className="col">
                 <input
                   type="food"
@@ -404,9 +399,9 @@ export default class Meals extends Component {
             this.state.tags &&
             <>
               {
-                this.state.tags.map(t => {
+                this.state.tags.map((t, j) => {
                   return (
-                    <div id={t} style={{ marginBottom: "2.5rem" }}>
+                    <div id={t} key={j} style={{ marginBottom: "2.5rem" }}>
                       <div className="home-location text-capitalize" style={{ marginLeft: "8px" }}>
                         {t}
                       </div>
@@ -414,11 +409,11 @@ export default class Meals extends Component {
                         {this.state.meals &&
                           <>
                             {
-                              this.state.meals.map(m => {
+                              this.state.meals.map((m, i) => {
                                 return (
                                   <>
                                     {(m.tag === t) &&
-                                      <div className="position-relative">
+                                      <div key={i} className="position-relative">
                                         <Card className="vendor-card pointer" onClick={() => this.modalMount(m)}
                                           border={m.available === true ? "secondary" : "danger"}
                                           style={vendorCard}>
@@ -435,7 +430,7 @@ export default class Meals extends Component {
                                               </Card.Body>
                                             </Col>
                                             <Col md={5} className="vendor-card-image d-flex flex-column justify-content-center">
-                                              {/* <Image className="vendor-img" src={JSON.parse(m.sample).thumb} thumbnail /> */}
+                                              <Image className="vendor-img" src={m.sample} thumbnail />
                                             </Col>
                                           </div>
                                         </Card>

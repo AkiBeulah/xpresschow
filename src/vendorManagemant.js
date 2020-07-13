@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Row from 'react-bootstrap/Row'
@@ -40,6 +39,10 @@ export default class VendorManagement extends Component {
       })
   }
 
+  setDef(a) {
+      localStorage.setItem("defTab", a)
+  }
+
   logout() {
     AuthService.logout();
     window.history.pushState("", "", "/home")
@@ -48,7 +51,6 @@ export default class VendorManagement extends Component {
 
   render() {
     const user = this.state.currentUser
-    const cover = user !== "" || user !== null ? { background: `url(${user.logo}) center/cover no-repeat` } : ""
     return (
       <div className="">
         {
@@ -89,21 +91,24 @@ export default class VendorManagement extends Component {
                 </Navbar>
 
                 <div className="container">
-                  <Tab.Container defaultActiveKey="meals" fixed="top" style={{ minHeight: "100vh" }}>
+                  <Tab.Container
+                    defaultActiveKey={localStorage.getItem("defTab") === null ? "orders" : localStorage.getItem("defTab")}
+                    fixed="top"
+                    style={{ minHeight: "100vh" }}>
                     <Row style={{ minHeight: "100vh" }}>
                       <Col sm={2} style={{ minHeight: "100vh" }}>
                         <Nav className="d-flex flex-column align-items-start" fixed="top" style={{ minHeight: "100vh", width: "130px", position: "fixed", top: "0" }}>
                           <Nav.Item>
-                            <Nav.Link eventKey="orders">Orders</Nav.Link>
+                            <Nav.Link eventKey="orders" onClick={() => this.setDef("orders")}>Orders</Nav.Link>
                           </Nav.Item>
                           <Nav.Item>
-                            <Nav.Link eventKey="meals">Meals</Nav.Link>
+                            <Nav.Link eventKey="meals" onClick={() => this.setDef("meals")}>Meals</Nav.Link>
                           </Nav.Item>
                           <Nav.Item>
-                            <Nav.Link eventKey="profile">Profile</Nav.Link>
+                            <Nav.Link eventKey="profile" onClick={() => this.setDef("profile")}>Profile</Nav.Link>
                           </Nav.Item>
                           <Nav.Item>
-                            <Nav.Link eventKey="messages">Messages</Nav.Link>
+                            <Nav.Link eventKey="messages" onClick={() => this.setDef("messages")}>Messages</Nav.Link>
                           </Nav.Item>
                         </Nav>
                       </Col>

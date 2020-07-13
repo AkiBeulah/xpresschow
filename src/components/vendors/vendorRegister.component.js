@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
 
 import AuthService from "../../services/auth.service";
 import VendorService from "../../services/vendor.service";
+
+import Image from 'react-bootstrap/Image'
 
 const required = value => {
   if (!value) {
@@ -38,11 +38,9 @@ export default class VendorRegister extends Component {
   }
   
   onChangeLogo = (e) => {
-    if (e.target.files && e.target.files[0]) {
       this.setState({
-        logo: JSON.stringify(VendorService.vendorImageUpload(e.target.files[0]))
+        logo: e.target.value
       })
-    }
   }
 
   onChangeEmail = (e) => {
@@ -164,14 +162,16 @@ export default class VendorRegister extends Component {
               </div>
             </div>
           )}
+          
+          <img class="vendor-thumbnail" src={this.state.logo} />
 
           <div className="form-group col-md-12">
             <Input
-              type="file"
+              type="text"
               className="form-control form-control-lg"
               name="logo"
-              ref="file"
-              placeholder="Logo"
+              // ref="file"
+              placeholder="Logo URL"
               onChange={this.onChangeLogo}
               validations={[required]}
             />

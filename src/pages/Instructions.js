@@ -25,9 +25,7 @@ export default class Instructions extends Component {
                     </div>
           </div>
           <div className="col text-center instruction instruction-4 rainbow-bg">
-            <marquee className="container" style={{ maxWidth: "20vw" }} direction="right">
               <FontAwesomeIcon icon={faTruck} className="text-center" />
-            </marquee>
             Then we bring the food to you to enjoy...
                 </div>
         </div>
