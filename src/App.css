@@ -27,6 +27,7 @@ body {
 
 .xx {
   border: none !important;
+  box-shadow: none !important;
 }
 
 .xxx {
@@ -493,4 +494,69 @@ body {
   font-weight: bolder;
   box-shadow: 2px 3px 8px #000;
   border-radius: 25px;
+}
+
+.checkout-order-thumbnail {
+  width: 70px !important;
+}
+
+.vendor-radio-label {
+  border: 1px solid #181818;
+  padding: 1rem;
+}
+
+.vendor-radio-button:checked+label {
+  background: #181818;
+  color: white;
+  transition: color .4s ease, background .8s ease;
+}
+
+.vendor-man-image {
+  width: 5rem;
+}
+
+.mg-2 {
+  margin-left: 4px;
+}
+
+.floating-available {
+  position: absolute;
+  z-index: 10;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+}
+
+.glowing-red {
+   outline: none;
+   color: #ff5c5c;
+   border-color: #ff4545;
+   text-shadow: 
+    0 0 2px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff5656,
+    0 0 30px #ff5656,
+    0 0 40px #fd7e7e,
+    0 0 50px #7c4d4d;
+  }
+  
+  .glowing-green {
+    outline: none;
+    color: #63ff4a;
+    border-color: #5eff45;
+    text-shadow: 
+      0 0 2px #ff0000,
+      0 0 10px #ff0000,
+      0 0 20px #ff5656,
+      0 0 30px #ff5656,
+      0 0 40px #fd7e7e,
+      0 0 50px #7c4d4d;;
+}
+
+.meals-btn {
+  position: fixed;
+  font-size: 4rem;
+  right: 2rem;
+  bottom: 4rem;
+  cursor: pointer;
 }

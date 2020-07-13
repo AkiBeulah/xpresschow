@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -53,7 +53,8 @@ export default class Register extends Component {
       password: "",
       phone_number: "",
       successful: false,
-      message: ""
+      message: "",
+      loading: false
     };
   }
 
@@ -92,7 +93,8 @@ export default class Register extends Component {
 
     this.setState({
       message: "",
-      successful: false
+      successful: false,
+      loading: true
     });
 
     this.form.validateAll();
@@ -121,7 +123,8 @@ export default class Register extends Component {
 
           this.setState({
             successful: false,
-            message: resMessage
+            message: resMessage,
+            loading: false
           });
         }
       )
@@ -185,7 +188,14 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group col-md-12">
-                  <button className="btn btn-outline-primary btn-lg btn-block">Sign Up</button>
+                <button className="btn btn-outline-primary btn-lg btn-block" disabled={this.state.loading} >
+                  {
+                    this.state.loading ?
+                      (<span className="spinner-border spinner-border-sm"></span>)
+                      :
+                      <span>Sign Up</span>
+                  }
+                </button>
                 </div>
               </div>
             )}

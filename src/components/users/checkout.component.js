@@ -7,12 +7,11 @@ import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 
-
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 
-import AuthService from "../services/auth.service"
-import UserService from "../services/user.service"
+import AuthService from "../../services/auth.service"
+import UserService from "../../services/user.service"
 
 export default class Profile extends Component {
   constructor(props) {

@@ -7,8 +7,8 @@ import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-import UserService from "../services/user.service"
-import AuthService from "../services/auth.service"
+import UserService from "../../services/user.service"
+import AuthService from "../../services/auth.service"
 
 export default class Profile extends Component {
 

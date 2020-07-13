@@ -17,8 +17,8 @@ import Badge from '@material-ui/core/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faShoppingCart, faMinus } from '@fortawesome/free-solid-svg-icons'
 
-import AuthService from "../services/auth.service"
-import UserService from "../services/user.service"
+import AuthService from "../../services/auth.service"
+import UserService from "../../services/user.service"
 
 export default class Profile extends Component {
   constructor(props) {

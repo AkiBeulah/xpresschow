@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -129,8 +129,12 @@ export default class Login extends Component {
 
               <div className="form-group col-md-12">
                 <button className="btn btn-outline-primary btn-lg btn-block" disabled={this.state.loading} >
-                  {this.state.loading && (<span className="spinner-border spinner-border-sm"></span>)}
-                  <span>Login</span>
+                  {
+                    this.state.loading ?
+                      (<span className="spinner-border spinner-border-sm"></span>)
+                      :
+                      <span>Login</span>
+                  }
                 </button>
               </div>
 
