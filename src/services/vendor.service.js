@@ -19,17 +19,17 @@ class VendorService {
     })
   }
 
-  vendorImageUpload(img) {
-    var formData = new FormData()
-    formData.append("image", img)
-    formData.append("key", "2809495c110899fc67aed90f6cd96757")
+  // vendorImageUpload(img) {
+  //   var formData = new FormData()
+  //   formData.append("image", img)
+  //   formData.append("key", "2809495c110899fc67aed90f6cd96757")
 
-    return axios({
-      method: "post",
-      url: IMG_URL,
-      data: formData
-    })
-  }
+  //   return axios({
+  //     method: "post",
+  //     url: IMG_URL,
+  //     data: formData
+  //   })
+  // }
 
   updateVendorDetails(a, b, c, d, e, f, g, h) {
     return axios({
