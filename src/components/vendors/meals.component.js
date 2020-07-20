@@ -120,6 +120,19 @@ export default class Meals extends Component {
     })
   }
 
+  handleDestroy = (e) => {
+    this.setState({
+      loading: true
+    })
+
+    VendorService.destroyMeal(
+      this.state.currentUser.vendorname,
+      this.state.id
+    ).then(
+      window.location.reload()
+    )
+  }
+
   onChangeName = (e) => {
     this.setState({
       name: e.target.value
@@ -276,12 +289,21 @@ export default class Meals extends Component {
               </button>
             </Modal.Footer>
           </Form>
+          <Modal.Footer>
+            <button onClick={this.handleDestroy} className="btn btn-outline-danger btn-lg btn-block" disabled={this.state.loading} >
+              {this.state.loading ?
+                (<span className="spinner-border spinner-border-sm"></span>)
+                :
+                <span>Delete</span>
+              }
+            </button>
+          </Modal.Footer>
         </Modal>
 
         <Modal show={this.state.newShow} onHide={close} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
           <Form onSubmit={this.handleCreate}>
             <div className="d-flex flex-row justify-content-start" style={{ padding: "12px" }}>
-            <div className="col">
+              <div className="col">
                 <Image className="vendor-man-image col" src={this.state.sample} thumbnail />
                 <div className="form-group col-md-12">
                   <input

@@ -53,30 +53,20 @@ export default class Login extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.credential, this.state.password).then(
-        () => {
+      AuthService.login(this.state.credential, this.state.password)
+        .then(() => {
           window.location.reload()
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
+        })
+        .catch(error => {
           this.setState({
-            loading: false,
-            message: resMessage
+            successful: false,
+            message: "Email or phone number already taken",
+            loading: false
           });
-        }
-      );
-    } else {
-      this.setState({
-        loading: false
-      });
+      })      
     }
   }
+
 
   render() {
     return (

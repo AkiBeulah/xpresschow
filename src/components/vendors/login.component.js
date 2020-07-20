@@ -125,7 +125,6 @@ export default class VendorLogin extends Component {
                 <span>Sign In</span>
               }
             </button>
-            <div className="btn btn-success disabled btn-lg btn-block">Sign In With Google</div>
           </div>
 
           <CheckButton style={{ display: "none" }}

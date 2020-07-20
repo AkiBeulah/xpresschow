@@ -25,6 +25,8 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
+    // localStorage.removeItem("cartTemp")
+
     UserService.getUserProfile(this.state.currentUser.id)
       .then(response =>
         this.setState({

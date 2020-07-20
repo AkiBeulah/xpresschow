@@ -112,22 +112,14 @@ export default class Register extends Component {
             message: response.data.message,
             successful: true
           });
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
+        }
+      ).catch(error => {
           this.setState({
             successful: false,
-            message: resMessage,
+            message: "Email or phone number already taken",
             loading: false
           });
-        }
-      )
+      })      
     }
   }
 

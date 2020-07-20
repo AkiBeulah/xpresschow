@@ -128,7 +128,7 @@ export default class Profile extends Component {
             <br />
             {this.state.target.available ? <br></br> : "Item not available"}
             <Row>
-              <Col md={7} className="d-flex flex-row align-items-center"><div className="section-title-font display-4">{this.state.target.name}</div></Col>
+              <Col md={7} className="d-flex flex-row align-items-start"><div className="section-title-font display-4">{this.state.target.name}</div></Col>
               <Col md={5}><Image className="vendor-img" src={this.state.target.sample} thumbnail /></Col>
             </Row>
             <br />
@@ -234,7 +234,7 @@ export default class Profile extends Component {
         </Navbar>
         <br />
         <br />
-        <div className="container d-flex flex-column flex-wrap justify-content-start" style={{ width: "fit-content" }}>
+        <div className="container d-flex flex-column flex-wrap justify-content-start">
           {
             tags ?
               <>

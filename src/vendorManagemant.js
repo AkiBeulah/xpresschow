@@ -14,8 +14,8 @@ import Meals from './components/vendors/meals.component'
 import Orders from './components/vendors/orders.component'
 import Profile from './components/vendors/profile.component'
 import Messages from './components/vendors/messages.component'
-import VendorLogin from './components/vendors/vendorLogin.component'
-import VendorRegister from './components/vendors/vendorRegister.component'
+import VendorLogin from './components/vendors/login.component'
+import VendorRegister from './components/vendors/register.component'
 
 export default class VendorManagement extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class VendorManagement extends Component {
     return (
       <div className="">
         {
-          (this.state.currentUser === "" || this.state.currentUser === null || this.state.currentUser === undefined || this.state.consumer !== "vendor") ?
+          (this.state.currentUser === "" || this.state.currentUser === null || this.state.currentUser === undefined) ?
             <div className="container">
               <div className="row">
                 <div className="col-md-8 offset-md-2 card xx">
