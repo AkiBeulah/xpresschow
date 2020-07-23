@@ -7,13 +7,13 @@ import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Navbar from 'react-bootstrap/Navbar'
+import ListGroupItem from "react-bootstrap/ListGroupItem";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 import AuthService from "../../services/auth.service"
 import VendorService from "../../services/vendor.service"
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 
 export default class Orders extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class Orders extends Component {
     })
   }
 
-  toggleAvailability = (m) => {
+  toggleDispatched = (m) => {
     VendorService.dispatchToggle(
       this.state.currentUser.vendorname,
       m.id
@@ -70,11 +70,11 @@ export default class Orders extends Component {
           {orders.length !== 0 &&
             orders.map((o, index) => {
               return (
-                <div className="position-relative">
-                  <div onClick={() => this.toggleAvailability(o)}>
+                <div className="position-relative" key={index}>
+                  <div onClick={() => this.toggleDispatched(o)}>
                     <FontAwesomeIcon icon={faCircle} className={o.dispatched === true ? "floating-available glowing-green" : "floating-available glowing-red"} />
                   </div>
-                  <Card border={o.delivered ? "success" : (o.dispatched ? "primary" : "danger")} key={index}>
+                  <Card border={o.delivered ? "success" : (o.dispatched ? "primary" : "danger")}>
                     <Accordion.Toggle as={Card.Header} eventKey={"" + index}>
                       <div className="d-flex flex-row">
                         <div className="">Price: {o.price}</div>

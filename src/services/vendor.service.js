@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import authHeader from "./auth-header"
 
-// const API_URL = `http://localhost:3001/api/v1/`
-const API_URL = 'https://xpresschow-api.herokuapp.com/api/v1/';
+const API_URL = `http://localhost:3001/api/v1/`
+// const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
 
 
 class VendorService {
@@ -19,69 +19,63 @@ class VendorService {
     })
   }
 
-  // vendorImageUpload(img) {
-  //   var formData = new FormData()
-  //   formData.append("image", img)
-  //   formData.append("key", "2809495c110899fc67aed90f6cd96757")
-
-  //   return axios({
-  //     method: "post",
-  //     url: IMG_URL,
-  //     data: formData
-  //   })
-  // }
-
   updateVendorDetails(a, b, c, d, e, f, g, h) {
-    return axios({
-      method: "patch",
-      url: API_URL + `vendors/${h}`,
-      headers: authHeader(),
-      params: {
-        logo: a,
-        company_name: b,
-        company_branch: c,
-        email: d,
-        phone_number: e,
-        address: f,
-        location: g
-      }
-    })
+    const data = {
+      logo: a,
+      company_name: b.toLowerCase(),
+      company_branch: c.toLowerCase(),
+      email: d.toLowerCase(),
+      phone_number: e,
+      address: f.toLowerCase(),
+      location: g.toLowerCase()
+    }
+    
+    return axios.patch(
+      API_URL + `vendors/${h}`,
+      data,
+      { headers: authHeader() }
+    )
   }
 
   createMeal(vendorname, sample, name, price, sampleAlt, tag, discount, desc) {
-    return axios({
-      method: "post",
-      url: API_URL + `vendor/${vendorname}/meals/new`,
-      headers: authHeader(),
-      params: {
-        sample: sample,
-        name: name,
-        desc: desc,
-        price: price,
-        sample_alt: sampleAlt,
-        tag: tag,
-        discount: discount
-      }
-    })
+    const data = {
+      sample: sample,
+      name: name.toLowerCase(),
+      desc: desc,
+      price: price,
+      sample_alt: sampleAlt.toLowerCase(),
+      tag: tag.toLowerCase(),
+      discount: discount
+    }
+    return axios.post(
+      API_URL + `vendor/${vendorname}/meals/new`,
+      data,
+      { headers: authHeader() }
+    )
   }
 
-  updateMeal(vendorname, id, sample, name, price, sampleAlt, tag, discount, desc, available) {
-    return axios({
-      method: "patch",
-      url: API_URL + `vendor/${vendorname}/meals/update`,
-      headers: authHeader(),
-      params: {
-        id: id,
-        name: name,
-        sample: sample,
-        price: price,
-        sample_alt: sampleAlt,
-        tag: tag,
-        discount: discount,
-        desc: desc,
-        available: available
-      }
-    })
+  updateMeal(vendorname, id, sample, name, price, sampleAlt, tag, discount, desc) {
+    const data =  {
+      id: id,
+      name: name.toLowerCase(),
+      sample: sample,
+      price: price,
+      sample_alt: sampleAlt.toLowerCase(),
+      tag: tag.toLowerCase(),
+      discount: discount,
+      desc: desc
+    }
+    
+    return axios.patch(
+      API_URL + `vendor/${vendorname}/meals/update`,
+      data,
+      { headers: authHeader() }
+    )
+  }
+
+  destroyMeal(vendorname, id) {
+    const data = {id: id}
+    return axios.delete(API_URL + `vendor/${vendorname}/meals/destroy`, data, { headers: authHeader() })
   }
 
   availabilityToggle(vendorname, id) {

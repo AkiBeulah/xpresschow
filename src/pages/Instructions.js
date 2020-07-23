@@ -25,7 +25,7 @@ export default class Instructions extends Component {
                     </div>
           </div>
           <div className="col text-center instruction instruction-4 rainbow-bg">
-              <FontAwesomeIcon icon={faTruck} className="text-center" />
+            <FontAwesomeIcon icon={faTruck} className="text-center" style={{margin: "0 auto"}}/>
             Then we bring the food to you to enjoy...
                 </div>
         </div>

@@ -137,7 +137,7 @@ export default class Home extends Component {
 
   render() {
     const vendorCard = { width: "15rem" }
-    const vendorCard2 = { width: "13rem" }
+    const vendorCard2 = { width: "13rem", marginRight: "14px" }
     var content = this.state.content;
     var currentUser = this.state.currentUser;
     var vendors = [];
@@ -192,19 +192,11 @@ export default class Home extends Component {
               {/* </label> */}
 
               <DropdownButton alignRight title="Filter" id="dropdown-menu-align-right" style={{ marginRight: "4px" }}>
-                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                <div className="container">Filter methods coming soon</div>
               </DropdownButton>
 
               <DropdownButton alignRight title="Sort" id="dropdown-menu-align-right" style={{ marginRight: "4px" }}>
-                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                <div className="container">Sort methods coming soon</div>
               </DropdownButton>
             </div>
           </Navbar>
@@ -298,7 +290,7 @@ export default class Home extends Component {
                 })}
               </div>
               :
-              <div className="d-flex flex-row flex-wrap justify-content-between">
+              <div className="d-flex flex-row flex-wrap justify-content-start">
                 {
                   vendors.slice(0, 10).map((m, i) => {
                     return (
