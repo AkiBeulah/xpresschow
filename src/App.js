@@ -15,6 +15,7 @@ import Home from "./Home"
 import Profile from "./components/users/profile.component"
 import Vendor from "./components/users/vendor.component"
 import VendorManagement from "./vendorManagemant"
+import CarrierManagement from "./carrierManagement"
 // import Test from "./components/test.component"
 import Checkout from "./components/users/checkout.component"
 import Footer from "./pages/Footer"
@@ -25,7 +26,6 @@ import NotFound from './NotFound'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.logOut = this.logOut.bind(this)
 
     this.state = {
       currentUser: undefined,
@@ -50,7 +50,7 @@ class App extends Component {
       });
     }
   }
-
+  
   updateCart = (arr) => {
     this.setState({
       cart: arr
@@ -68,7 +68,7 @@ class App extends Component {
     })
   }
 
-  logOut() {
+  logOut = () => {
     AuthService.logout();
     window.history.pushState("", "", "/home")
     window.location.reload()
@@ -97,7 +97,7 @@ class App extends Component {
           </Tabs>
         </Modal>
 
-        {!(window.location.pathname === "/management") &&
+        {!(window.location.pathname === "/management" || window.location.pathname === "/carrier") &&
           <Navbar collapseOnSelect className="nav" expand="lg" bg="white" sticky="top" variant="light">
             <div className="container">
               <Navbar.Brand className="logo-font xxx" href="/">XpressChow</Navbar.Brand>
@@ -143,19 +143,54 @@ class App extends Component {
               localStorage.getItem("consumer") === "vendor" ?
                 window.location.href = "/management"
                 :
-                <Home {...props} />
+                localStorage.getItem("consumer") === "carrier" ?
+                  window.location.href = "/carrier"
+                  :
+                  <Home {...props} />
             } />
+
             <Route exact path="/profile" render={(props) =>
-              <Profile {...props}
-                placedOrderData={this.state.placedOrderData}
-              />} />
+              localStorage.getItem("consumer") === "vendor" ?
+                window.location.href = "/management"
+                :
+                localStorage.getItem("consumer") === "carrier" ?
+                  window.location.href = "/carrier"
+                  :
+                  <Profile {...props}
+                    placedOrderData={this.state.placedOrderData}
+                  />} />
+
             <Route exact path="/vendor/:vendorname" render={(props) =>
-              <Vendor {...props}
-                updateCart={this.updateCart}
-              />} />
+              localStorage.getItem("consumer") === "vendor" ?
+                window.location.href = "/management"
+                :
+                localStorage.getItem("consumer") === "carrier" ?
+                  window.location.href = "/carrier"
+                  :
+                  <Vendor {...props}
+                    updateCart={this.updateCart}
+                  />} />
+
             <Route exact path="/management" render={(props) =>
-              <VendorManagement {...props}
-              />} />
+              localStorage.getItem("consumer") === "user" ?
+                window.location.href = "/"
+                :
+                localStorage.getItem("consumer") === "carrier" ?
+                  window.location.href = "/carrier"
+                  :
+                  <VendorManagement {...props}
+                  />} />
+
+            <Route exact path="/carrier" render={(props) =>
+              localStorage.getItem("consumer") === "user" ?
+                window.location.href = "/"
+                :
+                localStorage.getItem("consumer") === "vendor" ?
+                  window.location.href = "/management"
+                  :
+                  <CarrierManagement {...props} />
+            } />
+
             <Route exact path="/vendor/:vendorname/checkout" render={(props) =>
               JSON.parse(localStorage.getItem("cartTemp")) === null ?
                 window.location.href = "/"

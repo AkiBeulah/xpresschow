@@ -8,7 +8,6 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none;
 }
 
 :root {
@@ -48,6 +47,12 @@ body {
 .fake-height {
   height: 50vh !important;
 }
+
+.w-33 {
+  width: 33.33333% !important;
+}
+
+.mg-down {margin-bottom: 12px;}
 
 /* Header */
 

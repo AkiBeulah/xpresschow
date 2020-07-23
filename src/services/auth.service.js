@@ -40,6 +40,24 @@ class AuthService {
         return resp.data
       })
   }
+  
+  carrierLogin(credential, password) {
+    const carrier = {
+      credential: credential,
+      password: password
+    }
+
+    return axios.post(API_URL + 'carrier/login', qs.stringify(carrier))
+      .then(resp => {
+        if (resp.data.token) {
+          localStorage.setItem("token", resp.data.token)
+          localStorage.setItem("consumer", resp.data.consumer)
+          localStorage.setItem("user", JSON.stringify(resp.data.carrier))
+        }
+
+        return resp.data
+      })
+  }
 
   logout() {
     localStorage.removeItem("token")
@@ -49,10 +67,10 @@ class AuthService {
 
   register(email, password, first_name, last_name, phone_number) {
     const user = {
-      email: email,
+      email: email.toLowerCase(),
       password: password,
-      first_name: first_name,
-      last_name: last_name,
+      first_name: first_name.toLowerCase(),
+      last_name: last_name.toLowerCase(),
       phone_number: phone_number
     }
     return axios.post(API_URL + `users`, qs.stringify(user))
@@ -67,18 +85,34 @@ class AuthService {
       })
   }
 
-  vendorRegister(email, password, company_name, company_branch, phone_number, address, location, vendorname) {
-    const user = {
-      email: email,
+  vendorRegister(logo, email, password, company_name, company_branch, phone_number, address, location, vendorname) {
+    const vendor = {
+      logo: logo,
+      email: email.toLowerCase(),
       password: password,
-      company_name: company_name,
-      company_branch: company_branch,
+      company_name: company_name.toLowerCase(),
+      company_branch: company_branch.toLowerCase(),
       phone_number: phone_number,
-      address: address,
-      location: location,
+      address: address.toLowerCase(),
+      location: location.toLowerCase(),
       vendorname: vendorname
     }
-    return axios.post(API_URL + `vendors`, qs.stringify(user))
+    return axios.post(API_URL + `vendors`, qs.stringify(vendor))
+  }
+  
+  carrierRegister(email, password, firstname, lastname, phone_number, address, location, carriername, vehicle_type) {
+   const carrier = {
+      email: email.toLowerCase(),
+      password: password,
+      first_name: firstname.toLowerCase(),
+      last_name: lastname.toLowerCase(),
+      phone_number: phone_number,
+      address: address.toLowerCase(),
+      location: location.toLowerCase(),
+      carriername: carriername,
+      vehicle_type: vehicle_type
+    }
+    return axios.post(API_URL + `carriers`, qs.stringify(carrier))
   }
 
   getCurrentUser() {
