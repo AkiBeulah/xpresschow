@@ -1,8 +1,8 @@
 import axios from "axios";
 import qs from "qs";
 
-const API_URL = `http://localhost:3001/api/v1/`
-// const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
+// const API_URL = `http://localhost:3001/api/v1/`
+const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
 
 class AuthService {
   login(credential, password) {
