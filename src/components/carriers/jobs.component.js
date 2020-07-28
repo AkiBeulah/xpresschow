@@ -59,7 +59,7 @@ export default class Jobs extends Component {
                     <ListGroup className="list-group-flush">
                       <ListGroupItem>
                         <Row>
-                          <Col><div className="mg-2">Paid: {o.paid ? "True" : "False"}</div></Col>
+                          <Col><div className={o.paid ? "mg-2 alert alert-success" : "mg-2 alert alert-danger"}>Paid: {o.paid ? "True" : "False"}</div></Col>
                           <Col><div className="mg-2">Vendor: {o.vendorname}</div></Col>
                         </Row>
                       </ListGroupItem>
@@ -68,7 +68,7 @@ export default class Jobs extends Component {
                           <Col>
                             <div className="mg-2">Payment Method: {o.payment_method}</div>
                           </Col>
-                          <Col>
+                          <Col className={o.paid ? "" : "alert alert-danger"}>
                             <div className="mg-2">Price: {o.price}</div>
                           </Col>
                         </Row>

@@ -128,18 +128,14 @@ export default class VendorRegister extends Component {
               password: ""
             })
           })
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
+        }
+      ).catch(error => {
+        console.log(error.response)
+        if (error.response) {
           this.setState({
-            loading: false,
-            message: resMessage
+            message: error.response.data.errors[0],
+            successful: false,
+            loading: false
           }, () => {
             this.setState({
               email: "",
@@ -151,9 +147,17 @@ export default class VendorRegister extends Component {
               phoneNumber: "",
               password: ""
             })
-          });
+          })
+        } else if (error.request) {
+          this.setState({
+            message: "Please check your network",
+            successful: false,
+            loading: false
+          })
+        } else {
+          console.log(error)
         }
-      );
+      })
     } else {
       this.setState({
         loading: false

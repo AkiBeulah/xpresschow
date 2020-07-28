@@ -109,16 +109,25 @@ export default class Register extends Component {
       ).then(
         response => {
           this.setState({
-            message: response.data.message,
+            message: "success",
             successful: true
           });
+          window.location.reload()
         }
       ).catch(error => {
+        if (error.response) {
           this.setState({
-            successful: false,
-            message: "Email or phone number already taken",
-            loading: false
-          });
+            message: "Email or Phone Number already taken",
+            successful: false
+          })
+        } else if (error.request) {
+          this.setState({
+            message: "Please check your network",
+            successful: false
+          })
+        } else {
+          console.log(error)
+        }
       })      
     }
   }

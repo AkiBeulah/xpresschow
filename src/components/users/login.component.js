@@ -58,11 +58,21 @@ export default class Login extends Component {
           window.location.reload()
         })
         .catch(error => {
-          this.setState({
-            successful: false,
-            message: "Email or phone number already taken",
-            loading: false
-          });
+          if (error.response) {
+            this.setState({
+              message: error.response.data.error,
+              successful: false,
+              loading: false
+            })
+          } else if (error.request) {
+            this.setState({
+              message: "Please check your network",
+              successful: false,
+              loading: false
+            })
+          } else {
+            console.log(error)
+          }
       })      
     }
   }

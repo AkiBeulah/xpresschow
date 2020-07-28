@@ -48,31 +48,20 @@ class UserService {
   }
 
   placeOrder(a, b, c, d, e, f, g, h) {
-    console.log(
-      "user_id:", a, "\n",
-      "vendor_id:", b, "\n",
-      "location:", h, "\n",
-      "address:", c, "\n".toLowerCase(),
-      "payment_method:", d, "\n",
-      "price:", e, "\n",
-      "paid:", f, "\n",
-      "orders:", g, "\n"
-    )
+    const data = {
+      user_id: a,
+      vendor_id: b,
+      location: h,
+      address: c.toLowerCase(),
+      payment_method: d,
+      price: e,
+      paid: f,
+      orders: g
+    }
 
     return axios.post(API_URL + 'orders',
-      {
-        user_id: a,
-        vendor_id: b,
-        location: h,
-        address: c.toLowerCase(),
-        payment_method: d,
-        price: e,
-        paid: f,
-        orders: g
-      },
-      {
-        headers: authHeader()
-      }
+      data,
+      { headers: authHeader() }
     )
   }
 }
