@@ -53,30 +53,30 @@ export default class CarrierLogin extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.carrierLogin(this.state.credential, this.state.password).then(
-        () => {
+      AuthService.carrierLogin(this.state.credential, this.state.password)
+        .then(() => {
           window.location.reload()
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );
-    } else {
-      this.setState({
-        loading: false
-      });
+        })
+        .catch(error => {
+          if (error.response) {
+            this.setState({
+              message: error.response.data.error,
+              successful: false,
+              loading: false
+            })
+          } else if (error.request) {
+            this.setState({
+              message: "Please check your network",
+              successful: false,
+              loading: false
+            })
+          } else {
+            console.log(error)
+          }
+        })
     }
   }
+
 
   render() {
     return (

@@ -43,8 +43,8 @@ export default class Orders extends Component {
     })
   }
 
-  toggleDispatched = (m) => {
-    VendorService.dispatchToggle(
+  togglePrepared = (m) => {
+    VendorService.dispatchPrepared(
       this.state.currentUser.vendorname,
       m.id
     ).then(resp => {
@@ -71,10 +71,10 @@ export default class Orders extends Component {
             orders.map((o, index) => {
               return (
                 <div className="position-relative" key={index}>
-                  <div onClick={() => this.toggleDispatched(o)}>
-                    <FontAwesomeIcon icon={faCircle} className={o.dispatched === true ? "floating-available glowing-green" : "floating-available glowing-red"} />
+                  <div onClick={() => this.togglePrepared(o)}>
+                    <FontAwesomeIcon icon={faCircle} className={o.prepared === true ? "floating-available glowing-green" : "floating-available glowing-red"} />
                   </div>
-                  <Card border={o.delivered ? "success" : (o.dispatched ? "primary" : "danger")}>
+                  <Card border={o.delivered ? "success" : (o.prepared ? "primary" : "danger")}>
                     <Accordion.Toggle as={Card.Header} eventKey={"" + index}>
                       <div className="d-flex flex-row">
                         <div className="">Price: {o.price}</div>

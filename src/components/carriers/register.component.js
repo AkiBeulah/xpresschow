@@ -133,8 +133,9 @@ export default class VendorRegister extends Component {
       ).catch(error => {
         console.log(error.response)
         if (error.response) {
+          console.log(error.response)
           this.setState({
-            message: error.response.data.errors[0],
+            message: error.response.data.errors[0] ? error.response.data.errors[0] : error.response.data.errors,
             successful: false,
             loading: false
           }, () => {

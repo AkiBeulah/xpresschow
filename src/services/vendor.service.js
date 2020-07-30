@@ -2,20 +2,16 @@ import axios from 'axios';
 
 import authHeader from "./auth-header"
 
-// const API_URL = `http://localhost:3001/api/v1/`
-const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
-
-
 class VendorService {
   getVendorProfile(a) {
-    return axios.get(API_URL + `${a}/profile`, {
-      headers: authHeader()
+    return axios.get(authHeader.getApiUrl() + `${a}/profile`, {
+      headers: authHeader.getHeader()
     })
   }
 
   getVendorOrders(a) {
-    return axios.get(API_URL + `vendor/${a}/orders`, {
-      headers: authHeader()
+    return axios.get(authHeader.getApiUrl() + `vendor/${a}/orders`, {
+      headers: authHeader.getHeader()
     })
   }
 
@@ -31,9 +27,9 @@ class VendorService {
     }
     
     return axios.patch(
-      API_URL + `vendors/${h}`,
+      authHeader.getApiUrl() + `vendors/${h}`,
       data,
-      { headers: authHeader() }
+      { headers: authHeader.getHeader() }
     )
   }
 
@@ -48,9 +44,9 @@ class VendorService {
       discount: discount
     }
     return axios.post(
-      API_URL + `vendor/${vendorname}/meals/new`,
+      authHeader.getApiUrl() + `vendor/${vendorname}/meals/new`,
       data,
-      { headers: authHeader() }
+      { headers: authHeader.getHeader() }
     )
   }
 
@@ -67,33 +63,33 @@ class VendorService {
     }
     
     return axios.patch(
-      API_URL + `vendor/${vendorname}/meals/update`,
+      authHeader.getApiUrl() + `vendor/${vendorname}/meals/update`,
       data,
-      { headers: authHeader() }
+      { headers: authHeader.getHeader() }
     )
   }
 
   destroyMeal(vendorname, id) {
     const data = {id: id}
-    return axios.delete(API_URL + `vendor/${vendorname}/meals/destroy`, data, { headers: authHeader() })
+    return axios.delete(authHeader.getApiUrl() + `vendor/${vendorname}/meals/destroy`, data, { headers: authHeader.getHeader() })
   }
 
   availabilityToggle(vendorname, id) {
     return axios({
       method: "patch",
-      url: API_URL + `vendor/${vendorname}/meals/toggle`,
-      headers: authHeader(),
+      url: authHeader.getApiUrl() + `vendor/${vendorname}/meals/toggle`,
+      headers: authHeader.getHeader(),
       params: {
         id: id
       }
     })
   }
 
-  dispatchToggle(vendorname, id) {
+  dispatchPrepared(vendorname, id) {
     return axios({
       method: "patch",
-      url: API_URL + `vendor/${vendorname}/orders/dispatch`,
-      headers: authHeader(),
+      url: authHeader.getApiUrl() + `vendor/${vendorname}/orders/prepared`,
+      headers: authHeader.getHeader(),
       params: {
         id: id
       }

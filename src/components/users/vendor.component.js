@@ -236,65 +236,55 @@ export default class Profile extends Component {
         <br />
         <div className="container d-flex flex-column flex-wrap justify-content-start">
           {
-            tags ?
-              <>
-                {
-                  tags.map(t => {
-                    return (
-                      <div id={t} style={{ marginBottom: "2.5rem" }}>
-                        <div className="home-location text-capitalize" style={{ marginLeft: "8px" }}>
-                          {t}
-                        </div>
-                        <div className="d-flex flex-row flex-wrap justify-content-start">
-                          {meals ?
-                            <>
-                              {
-                                meals.map(m => {
-                                  return (
-                                    <>
-                                      {(m.tag === t) ?
-                                        <Card className="vendor-card pointer" onClick={() => this.setState({ show: true, target: m })}
-                                          border={m.available === true ? "secondary" : "danger"}
-                                          style={vendorCard}>
-                                          <div className="d-flex flex-row">
-                                            <Col md={7} className="vendor-card-col">
-                                              <Card.Body className="vendor-card-body">
-                                                <Card.Title className="vendor-card-title">{m.name}</Card.Title>
-                                                <Card.Text className="vendor-card-text" >
-                                                  {m.desc}
-                                                </Card.Text>
-                                                <Card.Text className="vendor-card-text" >
-                                                  ₦{parseFloat(m.price).toFixed(2)}
-                                                </Card.Text>
-                                              </Card.Body>
-                                            </Col>
-                                            <Col md={5} className="vendor-card-image d-flex flex-column justify-content-center">
-                                              <Image className="vendor-img" src={m.sample} thumbnail />
-                                            </Col>
-                                          </div>
-                                        </Card>
-                                        :
-                                        <>
-                                        </>
-                                      }
-                                    </>
-                                  );
-                                })
-                              }
-                            </>
-                            :
-                            <>
-                            </>
-                          }
-                        </div>
+            tags &&
+            <>
+              {
+                tags.map(t => {
+                  return (
+                    <div id={t} style={{ marginBottom: "2.5rem" }}>
+                      <div className="home-location text-capitalize" style={{ marginLeft: "8px" }}>
+                        {t}
                       </div>
-                    );
-                  })
-                }
-              </>
-              :
-              <>
-              </>
+                      <div className="d-flex flex-row flex-wrap justify-content-start">
+                        {meals &&
+                          <>
+                            {
+                              meals.map(m => {
+                                return (
+                                  <>
+                                    {(m.tag === t && m.available) &&
+                                      <Card className="vendor-card pointer" onClick={() => this.setState({ show: true, target: m })}
+                                        style={vendorCard}>
+                                        <div className="d-flex flex-row">
+                                          <Col md={7} className="vendor-card-col">
+                                            <Card.Body className="vendor-card-body">
+                                              <Card.Title className="vendor-card-title">{m.name}</Card.Title>
+                                              <Card.Text className="vendor-card-text" >
+                                                {m.desc}
+                                              </Card.Text>
+                                              <Card.Text className="vendor-card-text" >
+                                                ₦{parseFloat(m.price).toFixed(2)}
+                                              </Card.Text>
+                                            </Card.Body>
+                                          </Col>
+                                          <Col md={5} className="vendor-card-image d-flex flex-column justify-content-center">
+                                            <Image className="vendor-img" src={m.sample} thumbnail />
+                                          </Col>
+                                        </div>
+                                      </Card>
+                                    }
+                                  </>
+                                );
+                              })
+                            }
+                          </>
+                        }
+                      </div>
+                    </div>
+                  );
+                })
+              }
+            </>
           }
         </div>
       </>

@@ -1,47 +1,44 @@
 import axios from 'axios';
 import authHeader from "./auth-header"
 
-const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
-// const API_URL = `http://localhost:3001/api/v1/`
-
 class CarrierService {
   getCarrierProfile(a) {
-    return axios.get(API_URL + `${a}/profile`, {
-      headers: authHeader()
+    return axios.get(authHeader.getApiUrl() + `${a}/profile`, {
+      headers: authHeader.getHeader()
     })
   }
 
   dashBoard() {
-    return axios.get(API_URL + `carrier/dashboard`, { headers: authHeader() })
+    return axios.get(authHeader.getApiUrl() + `carrier/dashboard`, { headers: authHeader.getHeader() })
   }
   
   getJobs() {
-    return axios.get(API_URL + `carrier/jobs`, { headers: authHeader() })
+    return axios.get(authHeader.getApiUrl() + `carrier/jobs`, { headers: authHeader.getHeader() })
   }
 
   registerJob(orderID, id) {
-    return axios.post(API_URL + 'carrier/register_job',
+    return axios.post(authHeader.getApiUrl() + 'carrier/register_job',
       {
         order_id: orderID,
         carrier_id: id
       },
       {
-        headers: authHeader()
+        headers: authHeader.getHeader()
       })
   }
 
   delivered(orderID, id) {
-    return axios.post(API_URL + 'carrier/toggle_delivered',
+    return axios.post(authHeader.getApiUrl() + 'carrier/toggle_delivered',
       {
         order_id: orderID
       },
       {
-        headers: authHeader()
+        headers: authHeader.getHeader()
       })
   }
 
   toggleDelivered(id) {
-    axios.post(API_URL + 'carrier/toggle_delivered', { headers: authHeader() })
+    axios.post(authHeader.getApiUrl() + 'carrier/toggle_delivered', { headers: authHeader.getHeader() })
   }
 }
 

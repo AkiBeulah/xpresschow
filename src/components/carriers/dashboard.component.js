@@ -26,12 +26,14 @@ export default class DashBoard extends Component {
           jobs: resp.data
         })
       })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   registerJob = (orderID, id) => {
     CarrierService.registerJob(orderID, id)
       .then(resp => {
-        console.log(resp.data)
         this.setState({
           jobs: resp.data
         })

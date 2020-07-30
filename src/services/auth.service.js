@@ -1,8 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-// const API_URL = `http://localhost:3001/api/v1/`
-const API_URL = `https://xpresschow-api.herokuapp.com/api/v1/`
+import authHeader from "./auth-header"
 
 class AuthService {
   login(credential, password) {
@@ -11,7 +10,7 @@ class AuthService {
       password: password
     }
 
-    return axios.post(API_URL + 'user/login', qs.stringify(user))
+    return axios.post(authHeader.getApiUrl() + 'user/login', qs.stringify(user))
       .then(resp => {
         if (resp.data.token) {
           localStorage.setItem("token", resp.data.token)
@@ -29,7 +28,7 @@ class AuthService {
       password: password
     }
 
-    return axios.post(API_URL + 'vendor/login', qs.stringify(vendor))
+    return axios.post(authHeader.getApiUrl() + 'vendor/login', qs.stringify(vendor))
       .then(resp => {
         if (resp.data.token) {
           localStorage.setItem("token", resp.data.token)
@@ -47,7 +46,7 @@ class AuthService {
       password: password
     }
 
-    return axios.post(API_URL + 'carrier/login', qs.stringify(carrier))
+    return axios.post(authHeader.getApiUrl() + 'carrier/login', qs.stringify(carrier))
       .then(resp => {
         if (resp.data.token) {
           localStorage.setItem("token", resp.data.token)
@@ -73,7 +72,7 @@ class AuthService {
       last_name: last_name.toLowerCase(),
       phone_number: phone_number
     }
-    return axios.post(API_URL + `users`, qs.stringify(user))
+    return axios.post(authHeader.getApiUrl() + `users`, qs.stringify(user))
       .then(resp => {
         if (resp.data.token) {
           localStorage.setItem("token", resp.data.token)
@@ -97,7 +96,7 @@ class AuthService {
       location: location.toLowerCase(),
       vendorname: vendorname
     }
-    return axios.post(API_URL + `vendors`, qs.stringify(vendor))
+    return axios.post(authHeader.getApiUrl() + `vendors`, qs.stringify(vendor))
   }
   
   carrierRegister(email, password, firstname, lastname, phone_number, address, location, carriername, vehicle_type) {
@@ -112,7 +111,7 @@ class AuthService {
       carriername: carriername,
       vehicle_type: vehicle_type
     }
-    return axios.post(API_URL + `carriers`, qs.stringify(carrier))
+    return axios.post(authHeader.getApiUrl() + `carriers`, qs.stringify(carrier))
   }
 
   getCurrentUser() {

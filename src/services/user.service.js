@@ -2,17 +2,13 @@ import axios from 'axios';
 
 import authHeader from "./auth-header"
 
-// const API_URL = `http://localhost:3001/api/v1/`
-const API_URL = 'https://xpresschow-api.herokuapp.com/api/v1/';
-
-
 class UserService {
   getPublicContent() {
-    return axios.get(API_URL + 'vendors')
+    return axios.get(authHeader.getApiUrl() + 'vendors')
   }
 
   searchXpress(q) {
-    return axios.get(API_URL + 'search', {
+    return axios.get(authHeader.getApiUrl() + 'search', {
       params: {
         query: q
       }
@@ -24,7 +20,7 @@ class UserService {
   }
 
   filterByLocation(loc) {
-    return axios.get(API_URL + 'f_vendor', {
+    return axios.get(authHeader.getApiUrl() + 'f_vendor', {
       params: {
         location: loc
       }
@@ -32,18 +28,18 @@ class UserService {
   }
 
   getVendor(v) {
-    return axios.get(API_URL + 'vendors/' + v)
+    return axios.get(authHeader.getApiUrl() + 'vendors/' + v)
   }
 
   getUserProfile(a) {
-    return axios.get(API_URL + `users/${a}`, {
-      headers: authHeader()
+    return axios.get(authHeader.getApiUrl() + `users/${a}`, {
+      headers: authHeader.getHeader()
     })
   }
 
   getOrderRecord(a) {
-    return axios.get(API_URL + `orders/${a}`, {
-      headers: authHeader()
+    return axios.get(authHeader.getApiUrl() + `orders/${a}`, {
+      headers: authHeader.getHeader()
     })
   }
 
@@ -59,9 +55,9 @@ class UserService {
       orders: g
     }
 
-    return axios.post(API_URL + 'orders',
+    return axios.post(authHeader.getApiUrl() + 'orders',
       data,
-      { headers: authHeader() }
+      { headers: authHeader.getHeader() }
     )
   }
 }
