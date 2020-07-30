@@ -23,7 +23,7 @@ export default class Jobs extends Component {
     CarrierService.getJobs()
       .then(resp => {
         this.setState({
-          jobs: resp.data
+          jobs: resp.data.sort()
         })
       })
   }
@@ -34,12 +34,32 @@ export default class Jobs extends Component {
         this.setState({
         jobs: resp.data
       })
+    }) 
+      .catch(error => {
+      this.setState({
+        message: error.response.data.errors
+      })
     })
   }
 
   render() {
     return (
       <>
+        <h5 className="text-center">Accepted Jobs</h5>
+        {this.state.message && (
+              <div className="form-group col-md-12">
+                <div
+                  className={
+                    this.state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {this.state.message}
+                </div>
+              </div>
+            )}
          {this.state.jobs !== null &&
           this.state.jobs.map((o, index) => {
             return (

@@ -27,7 +27,9 @@ export default class DashBoard extends Component {
         })
       })
       .catch(error => {
-        console.log(error)
+        this.setState({
+          message: error.response.data.errors
+        })
       })
   }
 
@@ -52,7 +54,21 @@ export default class DashBoard extends Component {
             </div>
           </div>
         </Navbar> */}
-
+        <h5 className="text-center">Dashboard</h5>
+        {this.state.message && (
+              <div className="form-group col-md-12">
+                <div
+                  className={
+                    this.state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {this.state.message}
+                </div>
+              </div>
+            )}
         {this.state.jobs !== null &&
           this.state.jobs.map((o, index) => {
             return (

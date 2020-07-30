@@ -9,6 +9,7 @@ class CarrierService {
   }
 
   dashBoard() {
+    console.log(authHeader.getHeader())
     return axios.get(authHeader.getApiUrl() + `carrier/dashboard`, { headers: authHeader.getHeader() })
   }
   

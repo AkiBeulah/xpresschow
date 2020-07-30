@@ -33,24 +33,20 @@ export default class Profile extends Component {
 
 
   componentDidMount() {
-    if(this.state.cart === []) this.props.history.push('')
-    
+    if (this.state.cart === []) this.props.history.push('')
+
     UserService.getVendor(this.props.match.params.vendorname)
       .then(
         response => {
           this.setState({
             vendor: response.data
           })
-        },
-        error => {
-          this.setState({
-            content:
-              (error.response && error.response.data) ||
-              error.message ||
-              error.toString()
-          })
-        }
-      )
+        })
+      .catch(error => {
+        this.setState({
+          message: error.response.data.errors
+        })
+      })
     this.getTotal()
   }
 
@@ -86,8 +82,12 @@ export default class Profile extends Component {
         resp => {
           this.props.placeOrderData(resp.data)
           this.props.history.push('/profile')
-        }
-      )
+        })
+        .catch(error => {
+          this.setState({
+            message: error.response.data.errors
+          })
+        })
     }
   }
 
@@ -143,6 +143,20 @@ export default class Profile extends Component {
           <Col>
             <Card border={(this.state.location1 === "") ? "danger" : "success"}>
               <Accordion defaultActiveKey="0">
+              {this.state.message && (
+              <div className="form-group col-md-12">
+                <div
+                  className={
+                    this.state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {this.state.message}
+                </div>
+              </div>
+            )}
                 <div>
                   <Accordion.Toggle as={Card.Header} eventKey="0" className="logo-font">Location</Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
@@ -256,7 +270,7 @@ export default class Profile extends Component {
                 </div>
               </Accordion>
               <Card.Footer>
-               <Button size="lg" variant="success" onClick={() => this.placeOrder()} block disabled={this.state.location1 === ""}>Place Order</Button>
+                <Button size="lg" variant="success" onClick={() => this.placeOrder()} block disabled={this.state.location1 === ""}>Place Order</Button>
               </Card.Footer>
             </Card>
           </Col>

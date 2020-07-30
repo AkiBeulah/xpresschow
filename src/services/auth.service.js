@@ -45,7 +45,7 @@ class AuthService {
       credential: credential,
       password: password
     }
-
+    
     return axios.post(authHeader.getApiUrl() + 'carrier/login', qs.stringify(carrier))
       .then(resp => {
         if (resp.data.token) {
